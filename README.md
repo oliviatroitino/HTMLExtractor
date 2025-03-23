@@ -1,13 +1,29 @@
 # HTMLExtractor
 
-## Dependencias
+## Entrega con errores
+De la nada, sin hacer ningún cambio al código, empezó a dar error al hacer la extracción de texto. El error es el siguiente, y no he logrado hacer troubleshooting con el:
+`UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 564: invalid start byte`
+Hago la entrega con un notebook en etapa previa a la final, siendo este el último commit en github antes de que saliera el error. Esto era previo a separar el notebook en dos como dice la entrega. Por lo tanto, está la extracción de HTML y lo de LDA y análisis en el mismo notebook, aunque esto último está incompleto al no poder testearlo debido al error.
+
+## Imports y dependencias
 ```
-beautifulsoup4
-gensim
+from bs4 import BeautifulSoup
+import requests
+import os
+import shutil # zip
+import re
+import nltk
+from gensim import corpora
+from gensim.utils import simple_preprocess
+nltk.download('stopwords', download_dir='utils/nltk_data')
+from nltk.corpus import stopwords
+from gensim.models.ldamodel import LdaModel
+from gensim.models import CoherenceModel
+import matplotlib.pyplot as plt
 ```
 
 # HTMLExtractor.ipynb
-`HTMLExtractor.ipynb` lee el fichero `WikiURLs.txt` y guarda los URLs de Wikipedia en una lista. Después pasa por cada uno de esos links y usa `BeautifulSoup` para extraer el código HTML de los links y los guarda en el directorio `HTMLResults`.
+`HTMLExtractor.ipynb` lee el fichero `WikiURLs.txt` y guarda los URLs de Wikipedia en una lista. Después pasa por cada uno de esos links y usa `BeautifulSoup` para extraer el código HTML de los links y los guarda en el directorio `HTMLResults`. Luego de estos ficheros saca el texto y lo mete en otro directorio `TextExtractionResults`. Ambos directorios se entregan como zip en la entrega. 
 
 #### Instrucciones:
 
